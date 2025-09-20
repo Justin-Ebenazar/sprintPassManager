@@ -1,0 +1,232 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+    background: linear-gradient(0deg,rgba(1, 0, 66, 1) 0%, rgba(32, 20, 255, 1) 100%);
+    background-size: cover;
+    margin: 0;
+    min-height : 100vh;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Top bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #ffffff00;
+    /* margin-top: 15px; */
+    width: 90vw;
+}
+
+#search-box {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px 14px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    outline: none;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    margin-right: 20px;
+}
+
+.top-actions button {
+    margin-left: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 15px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.top-actions button:hover {
+    background-color: #0056b3;
+    border-radius: 20px;;
+}
+
+/* App grid */
+
+.app-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+    border-radius: 15px;
+    width: 120px;
+    height: 140px;
+}
+
+.app-grid {
+    display: grid;
+    background-color: yellow;
+    margin-top: 15px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    width: 90%;
+    height: 70vh;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.app-button {
+    background-color: #ffffff00;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 20px;
+    width : 90px;
+    height: 90px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.edit{
+  filter: invert(34%) sepia(89%) saturate(747%) hue-rotate(180deg);
+}
+
+.delete{
+  filter: invert(16%) sepia(93%) saturate(7480%) hue-rotate(0deg) brightness(95%) contrast(105%);
+}
+
+.app-button:hover {
+    transform: scale(1.05);
+}
+
+.app-button img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.app-button span {
+    display: block;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Floating Add Button */
+.add-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+/* Overlay base */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 1000;
+}
+
+.overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.overlay-content {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.4s ease;
+}
+
+.overlay-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #007bff;
+}
+
+.overlay-content p {
+    margin: 10px 0;
+    font-size: 15px;
+    color: #444;
+}
+
+.overlay-content form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+    color: #333;
+}
+
+.overlay-content form input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.overlay-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.overlay-actions button {
+    padding: 10px 14px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.overlay-actions button:hover {
+    background-color: #0056b3;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
