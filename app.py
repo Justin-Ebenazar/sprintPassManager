@@ -7,6 +7,10 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 import base64
 import os
+import webview
+import threading
+import signal
+import time
 
 app = Flask(__name__)
 app.secret_key = "a3f1c9d8e2b4f6ajustin7c1d2e3f4a5b6c7d8"
@@ -183,5 +187,21 @@ def delete_credential():
     flash("Credential deleted successfully!", "success")
     return redirect('/homepage')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+
+# def start_flask():
+#     app.run(debug=False, use_reloader=False)
+
+# if __name__ == '__main__':
+#     threading.Thread(target=start_flask, daemon=True).start()
+#     time.sleep(1)  # Give Flask time to start
+
+#     window = webview.create_window("Password Manager", "http://127.0.0.1:5000")
+
+#     def on_closed():
+#         print("Window closed. Exiting...")
+#         sys.exit(0)
+
+#     webview.start(on_closed, gui='qt')
+
+app.run(debug=True)

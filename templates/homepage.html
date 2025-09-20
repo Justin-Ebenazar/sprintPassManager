@@ -22,17 +22,17 @@
         {% for app in credential %}
         <div class="app-card" data-app-name="{{ app.app_name | lower }}">
             <button class="app-button"
-                onclick="openOverlay('{{ app.app_name }}', '{{ app.username }}', '{{ app.password }}', '{{ app.email }}', '{{ app.phone }}')">
+                onclick="openOverlay('{{ app.id }}', '{{ app.app_name }}', '{{ app.username }}', '{{ app.password }}', '{{ app.email }}', '{{ app.phone }}')">
                 <img src="{{ url_for('static', filename='icons/' + app.icon_filename) }}" alt="{{ app.app_name }} Icon">
                 <span>{{ app.app_name }}</span>
             </button>
             <div class="app-actions" style="margin-top: 10px;">
                 <button style="padding: 3px 2px 1px 2px; margin: 0; border-radius: 5px;"
-                    onclick="openEditOverlay('{{ app.app_name }}', '{{ app.username }}', '{{ app.password }}', '{{ app.email }}', '{{ app.phone }}', '{{ app.icon_filename }}')">
+                    onclick="openEditOverlay('{{ app.id }}','{{ app.app_name }}', '{{ app.username }}', '{{ app.password }}', '{{ app.email }}', '{{ app.phone }}', '{{ app.icon_filename }}')">
                     <img class="edit" src="{{ url_for('static', filename='builtIcons/pencil-svg.svg') }}" alt="Logout"
                         style="width: 15px; height: 15px; ">
                 </button>
-                <button style="padding: 3px 2px 1px 2px; margin: 0; border-radius: 5px;" onclick="openDeleteConfirm({{ app.id }}, '{{ app.app_name }}')">
+                <button style="padding: 3px 2px 1px 2px; margin: 0; border-radius: 5px;" onclick="openDeleteConfirm('{{ app.id }}','{{ app.app_name }}')">
                     <img class="delete" src="{{ url_for('static', filename='builtIcons/trash-svg.svg') }}" alt="Logout"
                         style="width: 15px; height: 15px; ">
                 </button>
