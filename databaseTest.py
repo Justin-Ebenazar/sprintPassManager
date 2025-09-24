@@ -98,10 +98,10 @@ def count_rows(table_name):
     print(f"🔢 Row count in '{table_name}': {count}")
 
 # list_tables()
-show_table_data("credentials")
+show_table_data("users")
 # insert_into_table("users", ["username", "password"], ["justin", "secure123"])
 # update_table_value("users", "password = ?", "id = ?", ["newpass456", 1])
-# delete_from_table("users", "id = ?", [1])
+# delete_from_table("users", "id = ?", [3])
 # check_foreign_keys()
 # get_schema("credentials")
 # count_rows("credentials")

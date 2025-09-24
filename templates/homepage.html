@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <script src="{{ url_for('static', filename='js/homepageHandler.js') }}"></script>
     <header class="top-bar">
         <div style="display: flex; align-items: center;">
             <input type="text" id="search-box" placeholder="Search apps...">
@@ -63,6 +64,7 @@
             <p><strong>Username:</strong> {{ session['user'] }}</p>
             <div class="overlay-actions">
                 <button onclick="closeProfile()">Close</button>
+                <button type="submit" class="delete-account-button" style="background-color: rgb(255, 190, 190); color: red; border-radius: 10px; " onclick="deleteAccount()">Delete Account</button>
             </div>
         </div>
     </div>

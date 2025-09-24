@@ -69,7 +69,6 @@ def do_login():
     if result is None or not check_password_hash(result[0], input_password):
         return "Invalid username or password. Please try again."
     session['user'] = username
-    session['pass'] = input_password
     return redirect('/homepage')
 
 @app.route('/register', methods=['POST'])
@@ -88,7 +87,7 @@ def sign_up():
 
 @app.route('/homepage')
 def homepage():
-    if not session.get('user') or not session.get('pass'):
+    if not session.get('user'):
         return redirect('/')
     app_credentials = []
     conn = sqlite3.connect('password_manager.db')
@@ -187,8 +186,20 @@ def delete_credential():
     # flash("Credential deleted successfully!", "success")
     return redirect('/homepage')
 
-
-
+@app.route('/delete_account', methods = ['POST'])
+def delete_account(password):
+    print(password)
+    if(not session.get('user') or password != session.get('pass')):
+        return redirect('/')
+    conn = sqlite3.connect('password_manager.db')
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM users WHERE username = ?', (session['user'],))
+    conn.commit()
+    conn.close()
+    session.pop('user', None)
+    session.pop('pass', None)
+    return redirect('/')
+    
 # def start_flask():
 #     app.run(debug=False, use_reloader=False)
 
