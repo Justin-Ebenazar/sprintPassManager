@@ -308,6 +308,11 @@ body {
     color: #007aff;
 }
 
+.overlay-actions button:first-child:active{
+    color: white;
+    background-color: #007aff;
+}
+
 .overlay-actions button:last-child {
     background-color: #007aff;
     color: white;

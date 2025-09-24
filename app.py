@@ -46,7 +46,7 @@ def database_connection():
             encrypted_password TEXT NOT NULL,
             salt BLOB NOT NULL,
             icon_filename TEXT,
-            FOREIGN KEY (user_id) REFERENCES users(id)
+            FOREIGN KEY (user_id) REFERENCES users(id) on delete cascade
         )
     ''')
     conn.commit()
@@ -144,7 +144,7 @@ def add_credential():
     ''', (user_id, app_name, username, email, number, encrypted_password, salt, icon_filename))
     conn.commit()
     conn.close()
-    flash("Credential added successfully!", "success")
+    # flash("Credential added successfully!", "success")
     return redirect('/homepage')
 
 @app.route('/update', methods=['POST'])
@@ -171,7 +171,7 @@ def update_credential():
     ''', (app_name, username, email, number, encrypted_password, salt, icon_filename, cred_id))
     conn.commit()
     conn.close()
-    flash("Credential updated successfully!", "success")
+    # flash("Credential updated successfully!", "success")
     return redirect('/homepage')
 
 @app.route('/delete', methods=['POST'])
@@ -184,7 +184,7 @@ def delete_credential():
     cursor.execute('DELETE FROM credentials WHERE id = ?', (cred_id,))
     conn.commit()
     conn.close()
-    flash("Credential deleted successfully!", "success")
+    # flash("Credential deleted successfully!", "success")
     return redirect('/homepage')
 
 

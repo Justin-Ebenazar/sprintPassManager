@@ -22,7 +22,7 @@
         {% for app in credential %}
         <div class="app-card" data-app-name="{{ app.app_name | lower }}">
             <button class="app-button"
-                onclick="openOverlay('{{ app.id }}', '{{ app.app_name }}', '{{ app.username }}', '{{ app.password }}', '{{ app.email }}', '{{ app.phone }}')">
+                onclick="openOverlay('{{ app.app_name }}', '{{ app.username }}', '{{ app.password }}', '{{ app.email }}', '{{ app.phone }}')">
                 <img src="{{ url_for('static', filename='icons/' + app.icon_filename) }}" alt="{{ app.app_name }} Icon">
                 <span>{{ app.app_name }}</span>
             </button>
@@ -227,7 +227,7 @@
 
             cards.forEach(card => {
                 const name = card.getAttribute('data-app-name');
-                card.style.display = name.includes(query) ? 'block' : 'none';
+                card.style.display = name.includes(query) ? 'flex' : 'none';
             });
         });
 
