@@ -120,6 +120,27 @@ def logout():
     session.pop('pass', None)
     return redirect('/')
 
+@app.route('/change_master_password', methods=['POST'] )
+def change_master_password():
+    data = request.get_json()
+    old_password = data.get('current_password')
+    new_password = data.get('new_password')
+    if not session.get('user') or not old_password or not new_password:
+        return jsonify({"status": "failure", "message": "Missing data"})
+    conn = sqlite3.connect('password_manager.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT password FROM users WHERE username = ?', (session['user'],))
+    result = cursor.fetchone()
+    if result is None or not check_password_hash(result[0], old_password):
+        conn.close()
+        return jsonify({"status": "failure", "message": "Old password incorrect"})
+    hashed_new_password = generate_password_hash(new_password)
+    cursor.execute('UPDATE users SET password = ? WHERE username = ?', (hashed_new_password, session['user']))
+    conn.commit()
+    conn.close()
+    session['pass'] = new_password
+    return jsonify({"status": "success", "message": "Password updated"})
+
 @app.route('/add', methods=['POST'])
 def add_credential():
     if not session.get('user') or not session.get('pass'):

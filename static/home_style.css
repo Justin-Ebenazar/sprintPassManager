@@ -1,7 +1,8 @@
 /* Base styles with macOS aesthetics */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', sans-serif;
-    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    /* background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); */
+    background: linear-gradient(145deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
@@ -127,8 +128,37 @@ body {
     gap: 25px;
     padding: 40px;
     border: 1px solid rgba(255, 255, 255, 0.5);
+    overflow-y: scroll;
+}
+/* Custom macOS-style scrollbar for app-grid */
+.app-grid::-webkit-scrollbar {
+    width: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
 }
 
+.app-grid::-webkit-scrollbar-thumb {
+    background: rgba(200, 200, 200, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 2px solid rgba(255,255,255,0.6);
+    transition: background 0.3s;
+}
+
+.app-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 122, 255, 0.3);
+}
+
+.app-grid::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+/* Firefox scrollbar */
+.app-grid {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(200,200,200,0.5) rgba(255,255,255,0.1);
+}
 .app-button {
     background-color: rgba(255, 255, 255, 0);
     border: none;
