@@ -341,26 +341,41 @@ body {
     100% { transform: scale(1); }
 }
 
-.flash-container {
+.flash-notifications{
+    display: none;
+}
+
+.flash-notifications.username-error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    color: rgb(147, 73, 0);
+    background-color : rgb(238, 255, 0);
+    border-radius: 7px;
     position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
+    z-index: 5;
+    top: 20px; 
+    animation : slideFadeOut 3s forwards;
 }
 
-.flash {
-    background-color: #007aff;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 10px;
-    font-size: 14px;
-    animation: fadeOut 4s forwards;
+@keyframes slideFadeOut {
+  0% {
+    transform: translateY(-30px);
+    opacity: 1;
+    display: block;
+  }
+  20% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }
 
-@keyframes fadeOut {
-    0% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; }
-}
+

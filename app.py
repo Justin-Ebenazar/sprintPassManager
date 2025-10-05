@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session, flash
+from flask import Flask, redirect, render_template, request, session, flash, jsonify
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 from cryptography.fernet import Fernet
@@ -59,17 +59,18 @@ def login():
 
 @app.route('/login', methods=['POST'])
 def do_login():
-    username = request.form.get('username')
-    input_password = request.form.get('password')
+    username = request.get_json().get('username')
+    input_password = request.get_json().get('password')
     conn = sqlite3.connect('password_manager.db')
     cursor = conn.cursor()
     cursor.execute('SELECT password FROM users WHERE username = ?', (username,))
     result = cursor.fetchone()
     conn.close()
     if result is None or not check_password_hash(result[0], input_password):
-        return "Invalid username or password. Please try again."
+        return jsonify({"status": "failure","message": "Invalid credentials","category": "password-error"})
     session['user'] = username
-    return redirect('/homepage')
+    session['pass'] = input_password
+    return jsonify({"status": "success","redirect": "/homepage"})
 
 @app.route('/register', methods=['POST'])
 def sign_up():
@@ -187,18 +188,19 @@ def delete_credential():
     return redirect('/homepage')
 
 @app.route('/delete_account', methods = ['POST'])
-def delete_account(password):
-    print(password)
-    if(not session.get('user') or password != session.get('pass')):
-        return redirect('/')
+def delete_account():
+    print(request.get_json().get('password'))
+    if(not session.get('user') or request.get_json().get('password') != session.get('pass')):
+        return jsonify({"status": "failure","message": "Password thappu"})
     conn = sqlite3.connect('password_manager.db')
+    conn.execute('PRAGMA foreign_keys = ON')
     cursor = conn.cursor()
     cursor.execute('DELETE FROM users WHERE username = ?', (session['user'],))
     conn.commit()
     conn.close()
     session.pop('user', None)
     session.pop('pass', None)
-    return redirect('/')
+    return jsonify({"status": "success","redirect": "/"})
     
 # def start_flask():
 #     app.run(debug=False, use_reloader=False)

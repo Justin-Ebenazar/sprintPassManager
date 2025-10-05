@@ -97,20 +97,11 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-.flash-notificationss{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 10px;
-    color: green;
-    background-color : rgba(0,255,0,1);
-    border-radius: 15px;
-    position: fixed;
-    z-index: 5;
-    top: 20px; 
+.flash-notifications{
+    display: none;
 }
 
-.flash-notifications{
+.flash-notifications.password-error{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,4 +112,24 @@ button[type="submit"]:hover {
     position: fixed;
     z-index: 5;
     top: 20px; 
+    animation : slideFadeOut 3s forwards;
+}
+
+@keyframes slideFadeOut {
+  0% {
+    transform: translateY(-30px);
+    opacity: 1;
+    display: block;
+  }
+  20% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }

@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <title>Auth | Password Manager</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css') }}">
+    <script src="{{ url_for('static',filename='js/loginpageHandler.js') }}" defer></script>
+
 </head>
 
 <body>
-    <div class="flash-notifications">
-        {{ flash }}
-        Hello wrold
-    </div>
+    <div class="flash-notifications"></div>
     <div class="auth-container">
 
         <div id="login-form" class="form-section">
