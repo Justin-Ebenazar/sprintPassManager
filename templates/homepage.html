@@ -84,13 +84,20 @@
                 <input type="email" name="email">
                 <label>Phone</label>
                 <input type="text" name="phone">
-                <label>Icon Filename</label>
+                <label>Icon Filename <button onmouseenter="toggleHelp('show')" onmouseleave="toggleHelp('close')"
+            style="outline: none;
+            border: 1px solid blue;
+            color: blue;
+            border-radius: 100%;">?</button></label>
                 <input type="text" name="icon_filename" placeholder="e.g. facebook.png">
                 <div class="overlay-actions">
                     <button type="submit">Save</button>
                     <button type="button" onclick="closeAddOverlay()">Cancel</button>
                 </div>
             </form>
+            <div id="help-text" class="help-text hidden">
+                <p style="color: blue;">Place your icon images in the 'static/icons' directory. Ensure the filename matches exactly, including the file extension (e.g., .png, .jpg).</p>
+            </div>
         </div>
     </div>
 

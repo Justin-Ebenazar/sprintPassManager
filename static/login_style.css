@@ -117,6 +117,8 @@ button[type="submit"]:hover {
     animation : slideFadeOut 3s forwards;
 }
 
+
+
 @keyframes slideFadeOut {
   0% {
     transform: translateY(-30px);

@@ -39,3 +39,14 @@ function changeMasterPassword() {
       }
     });
 }
+
+function toggleHelp(status) {
+  helpText = document.getElementById("help-text");
+  if (status === "show") {
+    helpText.classList.remove("hidden");
+    helpText.classList.add("visible");
+  } else {
+    helpText.classList.remove("visible");
+    helpText.classList.add("hidden");
+  }
+}
